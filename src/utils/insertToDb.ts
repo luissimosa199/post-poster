@@ -1,12 +1,7 @@
 import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 import { type ResponseData } from "@/types/responseData";
 import { type NextApiRequest, type NextApiResponse } from "next";
-
-type blogData = {
-  title: string;
-  description: string;
-  url: any;
-};
+import { type blogData } from "@/types/blogData";
 
 export async function insertDataToDB(
   responseData: blogData,

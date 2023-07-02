@@ -2,14 +2,13 @@ import { type NextApiRequest, type NextApiResponse } from "next";
 import { extractMetadata } from "../../utils/extractMetadata";
 import { fetchHtml } from "../../utils/fetchHtml";
 import { insertDataToDB } from "@/utils/insertToDb";
-
 import { type ResponseData } from "@/types/responseData";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const { url } = req.body;
+  const { url, name } = req.body;
 
   // request the page
   const html = await fetchHtml(url);
@@ -17,7 +16,7 @@ export default async function handler(
   // scrap the page & get elements
   const { title, description } = extractMetadata(html);
 
-  const responseData = { title, description, url };
+  const responseData = { title, description, url, name };
 
   // update db
   const { error } = await insertDataToDB(responseData, req, res)
