@@ -11,7 +11,7 @@ export default function Home() {
     <main>
       <Form setApiResponse={setApiResponse} />
 
-      {/* {apiResponse && <ResponseCard data={apiResponse.data} />} */}
+      {apiResponse && <ResponseCard data={apiResponse.data} />}
 
     </main>
   )
