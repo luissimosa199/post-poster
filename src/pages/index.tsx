@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Form from '@/components/Form'
 import { type ResponseData } from '@/types/responseData'
-// import ResponseCard from '@/components/ResponseCard'
+import ResponseCard from '@/components/ResponseCard'
 
 export default function Home() {
 
