@@ -14,7 +14,7 @@ export default async function handler(
   const html = await fetchHtml(url);
 
   // scrap the page & get elements
-  const { title, description } = extractMetadata(html);
+  const { title, description } = extractMetadata(html, name);
 
   const responseData = { title, description, url, name };
 

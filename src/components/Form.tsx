@@ -8,10 +8,11 @@ type FormInputs = {
 }
 
 type FormProps = {
-    setApiResponse: Dispatch<SetStateAction<ResponseData | null>>
+    setApiResponse: Dispatch<SetStateAction<ResponseData | null>>;
+    setIsLoading: Dispatch<SetStateAction<boolean>>
 }
 
-const Form: FunctionComponent<FormProps> = ({ setApiResponse }) => {
+const Form: FunctionComponent<FormProps> = ({ setApiResponse, setIsLoading }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<FormInputs>();
 
@@ -27,7 +28,6 @@ const Form: FunctionComponent<FormProps> = ({ setApiResponse }) => {
 
             if (response.ok) {
                 const responseData = await response.json();
-
                 reset()
                 setApiResponse(responseData);
             } else {
@@ -36,11 +36,12 @@ const Form: FunctionComponent<FormProps> = ({ setApiResponse }) => {
         } catch (error) {
             console.error(error);
         }
+        setIsLoading(false)
     }
 
     const onSubmit = (data: FormInputs) => {
         submitData(data)
-
+        setIsLoading(true)
     }
 
     return (
@@ -58,9 +59,9 @@ const Form: FunctionComponent<FormProps> = ({ setApiResponse }) => {
                     className="border border-gray-300 rounded px-3 py-2 mb-4 w-full focus:outline-none"
                 >
                     <option value="">Seleccionar</option>
+                    <option value="faulix">Faulix</option>
                     <option value="doxadoctor">Doxadoctor</option>
-                    <option value="swartz-track">Swartz Track</option>
-                    <option value="option3">Option 3</option>
+                    <option value="track-swart">Track Swart</option>
                 </select>
                 {errors.name && (
                     <p className="text-red-500 mb-2">{errors.name.message}</p>

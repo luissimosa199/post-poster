@@ -10,10 +10,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { name } = req.query;
 
   const feedOptions = {
-    title: "DOXA RSS FEED",
-    description: "DOXA RSS FEED FOR SOCIAL NETWORK",
-    feed_url: "https://mi-sitio.com/feed.xml",
-    site_url: "https://mi-sitio.com",
+    title: "RSS FEED",
+    description: "RSS FEED FOR SOCIAL NETWORK",
+    feed_url: `http://localhost:3000/api/rss/${name}`,
+    site_url: `http://localhost:3000/api/rss/${name}`,
   };
 
   const feed = new RSS(feedOptions);
@@ -38,6 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (response) {
     response.forEach((e) => {
       currentItem = {
+        guid: e.created_at,
         title: e.title,
         description: e.description,
         url: e.url,
