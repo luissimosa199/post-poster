@@ -11,7 +11,12 @@ export const extractMetadata = (html: string, name: string) => {
     const title = titleElement?.textContent || "";
     const description = descriptionElement?.textContent || "";
 
-    return { title, description };
+    const imgElements = document.querySelectorAll("img");
+    const secondImgElement = imgElements[1];
+    const imgUrl = secondImgElement?.getAttribute("src") || "";
+    const imgSrc = `https://${name}.com${imgUrl}`
+
+    return { title, description, imgSrc };
   }
 
   if (name === "doxadoctor") {

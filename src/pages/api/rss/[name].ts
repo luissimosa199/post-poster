@@ -44,6 +44,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         url: e.url,
         name: e.name,
         date: new Date(),
+        enclosure: { url: e.imgSrc}
       };
       return;
     });
